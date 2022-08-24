@@ -1,0 +1,200 @@
+{
+  "name": "M151ULTRAPROJECT/M151ULTRAPROJECT",
+  "type": "project",
+  "description": "fcc oxid shop",
+  "license": [
+    "GPL-3.0-only"
+  ],
+  "minimum-stability": "dev",
+  "require": {
+      "oxid-esales/oxideshop-metapackage-ce": "v6.2.0",
+      "php": ">=7.4",
+      "draufgeschaut/dgdomaintolanguage": "^5.00",
+      "draufgeschaut/dgcookieconsent": "^5.30",
+      "clousale/amazon-sp-api-php": "^2.1",
+      "digidesk/dd_trustedshops_features": "^2.0",
+      "phpoffice/phpspreadsheet": "^1.18",
+      "response/resgooglecaptcha": "*",
+      "stripe/stripe-php": "^8.9",
+      "oxid-community/ocbcleartmp": "*",
+      "proudcommerce/pcsummernotefix": "*",
+      "webaufbau/addicontent": "dev-develop",
+      "webaufbau/amazon": "dev-develop",
+      "webaufbau/aponow": "dev-develop",
+      "webaufbau/attributes": "dev-develop",
+      "webaufbau/basketpromotions": "dev-develop",
+      "webaufbau/dataprivacy": "dev-develop",
+      "webaufbau/deliveryaddresspayment": "dev-develop",
+      "webaufbau/export": "dev-develop",
+      "webaufbau/filtersnippet": "dev-develop",
+      "webaufbau/flow": "dev-develop",
+      "webaufbau/forcepayment": "dev-develop",
+      "webaufbau/gmerchant": "dev-develop",
+      "webaufbau/intranet": "dev-develop",
+      "webaufbau/lazyvideo": "dev-develop",
+      "webaufbau/logagb": "dev-develop",
+      "webaufbau/manjana": "dev-develop",
+      "webaufbau/news": "dev-develop",
+      "webaufbau/search": "dev-develop",
+      "webaufbau/sitemap": "dev-develop",
+      "webaufbau/snippetnopage": "dev-develop",
+      "webaufbau/specvat": "dev-develop",
+      "webaufbau/stats": "dev-develop",
+      "webaufbau/stopsuggest": "dev-develop",
+      "webaufbau/stripefix": "dev-develop",
+      "webaufbau/tabs": "dev-develop",
+      "webaufbau/useronepage": "dev-develop",
+      "webaufbau/utils": "dev-develop"
+  },
+  "require-dev": {
+    "oxid-esales/testing-library": "^v7.0.1",
+   "incenteev/composer-parameter-handler": "^v2.0.0",
+   "oxid-esales/oxideshop-ide-helper": "^3.1.2",
+   "oxid-esales/azure-theme": "^v1.4.2"
+  },
+  "autoload-dev": {
+    "psr-4": {
+
+    }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+      "@oe:ide-helper:generate"
+    ],
+    "post-update-cmd": [
+      "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+      "@oe:ide-helper:generate"
+    ],
+    "oe:ide-helper:generate": [
+      "if [ -f ./vendor/bin/oe-eshop-ide_helper ]; then oe-eshop-ide_helper; fi"
+    ]
+  },
+  "config": {
+    "preferred-install": {
+      "*": "dist"
+    },
+  "platform": {
+    "php": "7.4"
+  },
+    "allow-plugins": {
+      "ocramius/package-versions": true,
+      "oxid-esales/oxideshop-unified-namespace-generator": true,
+      "oxid-esales/oxideshop-composer-plugin": true
+    }
+  },
+  "extra": {
+    "incenteev-parameters": {
+      "file": "test_config.yml",
+      "dist-file": "vendor/oxid-esales/testing-library/test_config.yml.dist",
+      "parameter-key": "mandatory_parameters",
+      "env-map": {
+        "shop_path": "SHOP_PATH",
+        "shop_tests_path": "SHOP_TESTS_PATH",
+        "partial_module_paths": "PARTIAL_MODULE_PATHS"
+      }
+    }
+  },
+  "repositories": {
+    "draufgeschaut": {
+      "type": "composer",
+      "url": "https://update.draufgeschaut.de"
+    },
+    "digidesk": {
+      "type": "path",
+      "url": "./packages/digidesk/*"
+    },
+    "response/resgooglecaptcha": {
+      "type": "artifact",
+      "url": "./tmp"
+    },
+    "webaufbau/addicontent": {
+      "type": "vcs",
+      "url": "git@git.webaufbau.ch:oxid-modules/addicontent.git"
+    },"webaufbau/amazon": {
+      "type": "vcs",
+      "url": "git@git.webaufbau.ch:oxid-modules/amazon.git"
+    },"webaufbau/aponow": {
+      "type": "vcs",
+      "url": "git@git.webaufbau.ch:oxid-modules/aponow.git"
+    },"webaufbau/attributes": {
+      "type": "vcs",
+      "url": "git@git.webaufbau.ch:oxid-modules/attributes.git"
+    },"webaufbau/basketpromotions": {
+      "type": "vcs",
+      "url": "git@git.webaufbau.ch:oxid-modules/basketpromotions.git"
+    },"webaufbau/dataprivacy": {
+      "type": "vcs",
+      "url": "git@git.webaufbau.ch:oxid-modules/dataprivacy.git"
+    },"webaufbau/deliveryaddresspayment": {
+      "type": "vcs",
+      "url": "git@git.webaufbau.ch:oxid-modules/deliveryaddresspayment.git"
+    },"webaufbau/export": {
+      "type": "vcs",
+      "url": "git@git.webaufbau.ch:oxid-modules/export.git"
+    },"webaufbau/filtersnippet": {
+      "type": "vcs",
+      "url": "git@git.webaufbau.ch:oxid-modules/filtersnippet.git"
+    },"webaufbau/flow": {
+      "type": "vcs",
+      "url": "git@git.webaufbau.ch:oxid-modules/flow.git"
+    },"webaufbau/forcepayment": {
+      "type": "vcs",
+      "url": "git@git.webaufbau.ch:oxid-modules/forcepayment.git"
+    },"webaufbau/gmerchant": {
+      "type": "vcs",
+      "url": "git@git.webaufbau.ch:oxid-modules/gmerchant.git"
+    },"webaufbau/intranet": {
+      "type": "vcs",
+      "url": "git@git.webaufbau.ch:oxid-modules/intranet.git"
+    },"webaufbau/lazyvideo": {
+      "type": "vcs",
+      "url": "git@git.webaufbau.ch:oxid-modules/lazyvideo.git"
+    },"webaufbau/logagb": {
+      "type": "vcs",
+      "url": "git@git.webaufbau.ch:oxid-modules/logagb.git"
+    },"webaufbau/manjana": {
+      "type": "vcs",
+      "url": "git@git.webaufbau.ch:oxid-modules/manjana.git"
+    },"webaufbau/news": {
+      "type": "vcs",
+      "url": "git@git.webaufbau.ch:oxid-modules/news.git"
+    },"webaufbau/search": {
+      "type": "vcs",
+      "url": "git@git.webaufbau.ch:oxid-modules/search.git"
+    },"webaufbau/sitemap": {
+      "type": "vcs",
+      "url": "git@git.webaufbau.ch:oxid-modules/sitemap.git"
+    },"webaufbau/snippetnopage": {
+      "type": "vcs",
+      "url": "git@git.webaufbau.ch:oxid-modules/snippetnopage.git"
+    },"webaufbau/specvat": {
+      "type": "vcs",
+      "url": "git@git.webaufbau.ch:oxid-modules/specvat.git"
+    },
+    "webaufbau/stats": {
+      "type": "vcs",
+      "url": "git@git.webaufbau.ch:oxid-modules/stats.git"
+    },
+    "webaufbau/stopsuggest": {
+      "type": "vcs",
+      "url": "git@git.webaufbau.ch:oxid-modules/stopsuggest.git"
+    },
+    "webaufbau/stripefix": {
+      "type": "vcs",
+      "url": "git@git.webaufbau.ch:oxid-modules/stripefix.git"
+    },
+    "webaufbau/tabs": {
+      "type": "vcs",
+      "url": "git@git.webaufbau.ch:oxid-modules/tabs.git"
+    },
+    "webaufbau/useronepage": {
+      "type": "vcs",
+      "url": "git@git.webaufbau.ch:oxid-modules/useronepage.git"
+    },
+    "webaufbau/utils": {
+      "type": "vcs",
+      "url": "git@git.webaufbau.ch:oxid-modules/utils.git"
+    }
+  }
+}
