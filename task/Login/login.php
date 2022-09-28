@@ -38,21 +38,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"):
 
     // kein fehler
     if (empty($error)):
-
         // TODO SELECT Query erstellen, user und passwort mit Datenbank vergleichen
-        $query = 'select * from users where username=? and password=?';
+        $query = 'SELECT * FROM users WHERE username=?';
 
         // TODO prepare()
         $stmt = $conn->prepare($query);
 
         // TODO bind_param()
-        $stmt->bind_param('ss', $username, $password);
+        $stmt->bind_param('s', $username);
 
         // TODO execute()
         $stmt->execute();
-        $result = $stmt->get_result();
+        $stmt->get_result();
 
+        var_dump($stmt);
+    exit();
+        $stmt->fetch_all(MYSQLI_ASSOC);
+
+        $sql = 'SELECT * FROM users WHERE username="' . $username . '"';
+        $result = mysqli_query($conn, $sql);
+
+        // Fetch all
+        $result = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        var_dump($result);
+
+        //$stmt->store_result();
+
+        printf("Datenätze eingefügt: %d.\n", mysqli_stmt_affected_rows($stmt));
         // TODO Passwort auslesen und mit dem eingegeben Passwort vergleichen
+        exit();
+        //password_verify($password, $hash);
+
         if ($result->num_rows > 0) :
             // TODO: wenn Passwort korrekt:  $message .= "Sie sind nun eingeloggt";
             echo 'Sie sind nun eingeloggt.<br />';
@@ -93,7 +109,7 @@ endif;
     // fehlermeldung oder nachricht ausgeben
     if (!empty($message)) :
         echo "<div class=\"alert alert-success\" role=\"alert\">" . $message . "</div>";
-     elseif (!empty($error)) :
+    elseif (!empty($error)) :
         echo "<div class=\"alert alert-danger\" role=\"alert\">" . $error . "</div>";
     endif;
     ?>

@@ -70,6 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"):
         if (isset($_POST['password'])) :
             //trim and sanitize
             $password = trim($_POST['password']);
+            $password = password_hash($password, PASSWORD_DEFAULT);
 
             //mindestens 1 Zeichen , entsprich RegEX
             if (empty($password) || !preg_match("/(?=^.{8,255}$)((?=.*\d+)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/", $password)) :
