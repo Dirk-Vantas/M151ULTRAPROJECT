@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         echo "<div class=\"alert alert-danger\" role=\"alert\">" . $error . "</div>";
     }
     ?>
-    <form action="validirung.php" method="post">
+    <form action="validierung.php" method="post">
 
         <div class="form-group">
             <label for="firstname">Vorname *</label>
