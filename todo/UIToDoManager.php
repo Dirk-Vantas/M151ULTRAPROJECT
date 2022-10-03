@@ -21,8 +21,13 @@ class UIRenderToDoManager
         ';
 
         foreach($collection as $listItem)
-        {
-            echo '<div borderstyle="solid">'.$listItem.'</div>';
+        {   
+            echo '<div style="border-style:solid;">';
+            
+            echo '<div style="border-bottom-style: solid; border-width:1px;">'.$listItem['taskTitle'].'</div>';
+            echo '<div>'.$listItem['taskDescription'].'</div>';
+            
+            echo '</div>';
         }
 
         echo '
@@ -36,11 +41,11 @@ class UIRenderToDoManager
         
         <div class="controlPanel">
     <div>
-        <form action="">
+        <form action="toDo.php" method="post">
             <label for="itemName">Titel</label><br>
-            <input type="text" id="itemName" name="titel"><br>
+            <input required type="text" id="itemName" name="titel"><br>
             <label for="itemDesc">Beschreibung</label><br>
-            <input type="text" id="itemDesc" name="description">
+            <input required type="text" id="itemDesc" name="description">
             <button type="submit" class="btn btn-primary">Save</button>
         </form>
     </div>

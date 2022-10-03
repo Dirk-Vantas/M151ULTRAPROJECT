@@ -12,8 +12,24 @@ require('inc/DB.php');
 $testCollection = array('item1','item2');
 
 $controlls = new UIRenderToDoManager;
+$user = new BOToDoManager;
+
+//debug giving userobject fake ID
+$user->setID(500);
+
+//catch input if user made one
+$user->catchInput();
+
+//populate user with all his tasks
+$user->populate();
+
+//render the control pannel for the user
 $controlls->renderControls();
-$controlls->renderList($testCollection);
+
+//render all tasks from the user last
+$controlls->renderList($user->itemCollection);
+
+
 
 ?>
 
