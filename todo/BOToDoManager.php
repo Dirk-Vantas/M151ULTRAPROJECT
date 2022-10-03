@@ -8,8 +8,37 @@
 class BOToDoManager
 {
     //Properties
+    public $itemCollection;
+    
 
     //Methods
+
+    //pupulate the collection with all saved items from the DB
+    function populate()
+    {
+
+    }
+
+    //save entry made by user
+    function save()
+    {
+
+    }
+
+    //delete entry made by user
+    function delete()
+    {
+
+    }
+
+    //update entry made by user
+    function update()
+    {
+
+    }
+
+
+
 }
 
 

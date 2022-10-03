@@ -16,10 +16,40 @@ class UIRenderToDoManager
     //Methods
     function renderList($collection)
     {
+        echo '
+        <div class="listContainer">
+        ';
+
         foreach($collection as $listItem)
         {
-            echo 'List Item';
+            echo '<div borderstyle="solid">'.$listItem.'</div>';
         }
+
+        echo '
+        </div>
+        ';
+    }
+
+    function renderControls()
+    {
+        echo '
+        
+        <div class="controlPanel">
+    <div>
+        <form action="">
+            <label for="itemName">Titel</label><br>
+            <input type="text" id="itemName" name="titel"><br>
+            <label for="itemDesc">Beschreibung</label><br>
+            <input type="text" id="itemDesc" name="description">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+</div> 
+        
+        
+        
+        
+        ';
     }
 
     
@@ -27,3 +57,4 @@ class UIRenderToDoManager
 
 }
 ?>
+
