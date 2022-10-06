@@ -88,9 +88,18 @@ class BOToDoManager
         unset($_POST);
     }
 
-    function done()
+    function done($ID)
     {
+        require('inc/DB.php');
 
+        $sql = "UPDATE tasks SET done=? WHERE taskID=? && userID=? ";
+        $stmt = $conn->prepare($sql);
+        
+        $stmt->bind_param("iii",1,$ID,$this->userID);
+        $stmt->execute();
+
+        //clear post after insertion
+        unset($_POST);
     }
 
     //function that looks for user input into the form
@@ -132,7 +141,6 @@ class BOToDoManager
             
             $this->update($_POST['titel'],$_POST['description'],$_POST['update']);
             unset($_POST);
-
             echo '
             <script>
             window.location = window.location.href;
@@ -144,9 +152,8 @@ class BOToDoManager
         if(isset($_POST['done']))
         {   
            
-            $this->update($_POST['titel'],$_POST['description'],$_POST['update']);
+            $this->done($_POST['done']);
             unset($_POST);
-
             echo '
             <script>
             window.location = window.location.href;

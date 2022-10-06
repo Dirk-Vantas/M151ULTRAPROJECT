@@ -26,22 +26,32 @@ class UIRenderToDoManager
         foreach($collection as $listItem)
         {   
             $id = $listItem['taskID'];
+            $CSSmodifier = '';
+            $hide = '';
+
+            //if task is done strike through elements and take away done button, right now not reversable 
+            //but why would you even need such a function anyway lmao
+            if($listItem['done']== 1)
+            {
+                $CSSmodifier = 'style="text-decoration: line-through';
+                $hide = 'hidden';
+            }
             
             //prepare controll elements for the entries
             $controllPanelHTML = '
             <div>
             <form action="toDo.php" method="post">
             <button class="btn btn-primary" name="delete" value="'.$id.'" >Delete</button>
-            <button class="btn btn-primary" name="update" value="'.$id.'" >Update</button>
-            <button class="btn btn-primary" name="done" value="'.$id.'"  >Done</button>
+            <button '.$hide.' class="btn btn-primary" name="update" value="'.$id.'" >Update</button>
+            <button '.$hide.' class="btn btn-primary" name="done" value="'.$id.'"  >Done</button>
             </form>
             </div>
             ';
 
             
             //maybe fix color of placeholder text and fix css of boxes :)
-            $title = '<input required type="text" id="itemName" name="titel" placeholder="'.$listItem['taskTitle'].'">';
-            $description = '<input required type="text" id="itemName" name="description" placeholder="'.$listItem['taskDescription'].'">';
+            $title = '<input '.$CSSmodifier.' required type="text" id="itemName" name="titel" placeholder="'.$listItem['taskTitle'].'">';
+            $description = '<input '.$CSSmodifier.' required type="text" id="itemName" name="description" placeholder="'.$listItem['taskDescription'].'">';
 
             echo '<div style="border-style:solid;">';
             echo '<form action="toDo.php" method="post">';
