@@ -31,19 +31,19 @@ class UIRenderToDoManager
 
             //if task is done strike through elements and take away done button, right now not reversable 
             //but why would you even need such a function anyway lmao
-            if($listItem['done']== 1)
+            if($listItem['done'] == 1)
             {
-                $CSSmodifier = 'style="text-decoration: line-through';
-                $hide = 'hidden';
+                $CSSmodifier = 'style="text-decoration: line-through;!important;"';
+                $hide = 'style="display:none; !important;"';
             }
             
             //prepare controll elements for the entries
             $controllPanelHTML = '
             <div>
             <form action="toDo.php" method="post">
-            <button class="btn btn-primary" name="delete" value="'.$id.'" >Delete</button>
-            <button '.$hide.' class="btn btn-primary" name="update" value="'.$id.'" >Update</button>
-            <button '.$hide.' class="btn btn-primary" name="done" value="'.$id.'"  >Done</button>
+            
+            <button class="btn btn-primary" name="update" value="'.$id.'" '.$hide.'>Update</button>
+            
             </form>
             </div>
             ';
@@ -57,6 +57,10 @@ class UIRenderToDoManager
             echo '<form action="toDo.php" method="post">';
             echo '<div style="border-bottom-style: solid; border-width:1px;">'.$title.$controllPanelHTML.$description.'</div>';
             //echo '<div>'.$description.'</div>';
+            echo '</form>';
+            echo '<form action="toDo.php" method="post">';
+            echo '<button class="btn btn-primary" name="delete" value="'.$id.'" >Delete</button>';
+            echo '<form action="toDo.php" method="post"><button '.$hide.' class="btn btn-primary" name="done" value="'.$id.'"  >Done</button>';
             echo '</form>';
             echo '</div>';
         }

@@ -45,10 +45,13 @@ class BOToDoManager
     {   
         require('inc/DB.php');
 
-        $sql = "INSERT INTO tasks (taskTitle, taskDescription, userID) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO tasks (taskTitle, taskDescription, userID,dateCreated,deadline,done) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
+
+        $placeholderDeadline = time();
+        $goal = 0;
         
-        $stmt->bind_param("ssi", $title, $description, $this->userID);
+        $stmt->bind_param("ssiiii", $title, $description, $this->userID,$placeholderDeadline,$placeholderDeadline,$goal);
         $stmt->execute();
 
         //clear post after insertion
@@ -92,10 +95,12 @@ class BOToDoManager
     {
         require('inc/DB.php');
 
+        $done = 1;
+
         $sql = "UPDATE tasks SET done=? WHERE taskID=? && userID=? ";
         $stmt = $conn->prepare($sql);
         
-        $stmt->bind_param("iii",1,$ID,$this->userID);
+        $stmt->bind_param("iii",$done,$ID,$this->userID);
         $stmt->execute();
 
         //clear post after insertion
@@ -108,21 +113,21 @@ class BOToDoManager
     {
         if(isset($_POST['save']))
         {
-            if(isset($_POST['titel']) && isset($_POST['description']))
-        {   
+            echo '<h1>'.var_dump($_POST).'<h1>';
             
             $this->save($_POST['titel'],$_POST['description']);
             unset($_POST);
+            /*
             echo '
             <script>
             window.location = window.location.href;
             </script>
             ';
-            
-        }
+            */
+        
         }
         
-
+        /*
         if(isset($_POST['delete']))
         {   
             
@@ -161,6 +166,8 @@ class BOToDoManager
             ';
             
         }
+
+        */
     }
 
 
