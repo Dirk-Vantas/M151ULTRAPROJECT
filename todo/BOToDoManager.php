@@ -54,6 +54,7 @@ class BOToDoManager
         $stmt->bind_param("ssiiii", $title, $description, $this->userID,$placeholderDeadline,$placeholderDeadline,$goal);
         $stmt->execute();
 
+        exit();
         //clear post after insertion
         unset($_POST);
 
