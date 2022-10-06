@@ -57,13 +57,38 @@ class BOToDoManager
     }
 
     //delete entry made by user
-    function delete()
+    function delete($ID)
     {
+        require('inc/DB.php');
+
+        $sql = "DELETE FROM tasks WHERE taskID=? && userID=?";
+        $stmt = $conn->prepare($sql);
+        
+        //delete only if the right user is making the call
+        $stmt->bind_param("ii",$ID,$this->userID);
+        $stmt->execute();
+
+        //clear post after insertion
+        unset($_POST);
 
     }
 
     //update entry made by user
-    function update()
+    function update($title, $description,$ID)
+    {
+        require('inc/DB.php');
+
+        $sql = "UPDATE tasks SET taskTitle=?, taskDescription=? WHERE taskID=? && userID=? ";
+        $stmt = $conn->prepare($sql);
+        
+        $stmt->bind_param("ssii", $title, $description, $ID,$this->userID);
+        $stmt->execute();
+
+        //clear post after insertion
+        unset($_POST);
+    }
+
+    function done()
     {
 
     }
@@ -72,11 +97,56 @@ class BOToDoManager
     //if it finds an input it will save it
     function catchInput()
     {
-        if(isset($_POST['titel']) && isset($_POST['description']))
+        if(isset($_POST['save']))
+        {
+            if(isset($_POST['titel']) && isset($_POST['description']))
         {   
             
             $this->save($_POST['titel'],$_POST['description']);
             unset($_POST);
+            echo '
+            <script>
+            window.location = window.location.href;
+            </script>
+            ';
+            
+        }
+        }
+        
+
+        if(isset($_POST['delete']))
+        {   
+            
+            $this->delete($_POST['delete']);
+            unset($_POST);
+            echo '
+            <script>
+            window.location = window.location.href;
+            </script>
+            ';
+            
+        }
+
+        if(isset($_POST['update']))
+        {   
+            
+            $this->update($_POST['titel'],$_POST['description'],$_POST['update']);
+            unset($_POST);
+
+            echo '
+            <script>
+            window.location = window.location.href;
+            </script>
+            ';
+            
+        }
+
+        if(isset($_POST['done']))
+        {   
+           
+            $this->update($_POST['titel'],$_POST['description'],$_POST['update']);
+            unset($_POST);
+
             echo '
             <script>
             window.location = window.location.href;

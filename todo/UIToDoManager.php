@@ -12,6 +12,9 @@ class UIRenderToDoManager
 {
     //Properties
     public $listCollection;
+    
+
+    
 
     //Methods
     function renderList($collection)
@@ -22,11 +25,29 @@ class UIRenderToDoManager
 
         foreach($collection as $listItem)
         {   
+            $id = $listItem['taskID'];
+            
+            //prepare controll elements for the entries
+            $controllPanelHTML = '
+            <div>
+            <form action="toDo.php" method="post">
+            <button class="btn btn-primary" name="delete" value="'.$id.'" >Delete</button>
+            <button class="btn btn-primary" name="update" value="'.$id.'" >Update</button>
+            <button class="btn btn-primary" name="done" value="'.$id.'"  >Done</button>
+            </form>
+            </div>
+            ';
+
+            
+            //maybe fix color of placeholder text and fix css of boxes :)
+            $title = '<input required type="text" id="itemName" name="titel" placeholder="'.$listItem['taskTitle'].'">';
+            $description = '<input required type="text" id="itemName" name="description" placeholder="'.$listItem['taskDescription'].'">';
+
             echo '<div style="border-style:solid;">';
-            
-            echo '<div style="border-bottom-style: solid; border-width:1px;">'.$listItem['taskTitle'].'</div>';
-            echo '<div>'.$listItem['taskDescription'].'</div>';
-            
+            echo '<form action="toDo.php" method="post">';
+            echo '<div style="border-bottom-style: solid; border-width:1px;">'.$title.$controllPanelHTML.$description.'</div>';
+            //echo '<div>'.$description.'</div>';
+            echo '</form>';
             echo '</div>';
         }
 
@@ -46,7 +67,7 @@ class UIRenderToDoManager
             <input required type="text" id="itemName" name="titel"><br>
             <label for="itemDesc">Beschreibung</label><br>
             <input required type="text" id="itemDesc" name="description">
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary name="save">Save</button>
         </form>
     </div>
 </div> 
