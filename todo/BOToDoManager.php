@@ -54,7 +54,7 @@ class BOToDoManager
         $stmt->bind_param("ssiiii", $title, $description, $this->userID,$placeholderDeadline,$placeholderDeadline,$goal);
         $stmt->execute();
 
-        exit();
+        
         //clear post after insertion
         unset($_POST);
 
@@ -112,23 +112,24 @@ class BOToDoManager
     //if it finds an input it will save it
     function catchInput()
     {
-        if(isset($_POST['save']))
+        
+        if(isset($_POST['titel']) && isset($_POST['description']))
         {
-            echo '<h1>'.var_dump($_POST).'<h1>';
             
             $this->save($_POST['titel'],$_POST['description']);
             unset($_POST);
-            /*
+            
+            
             echo '
             <script>
             window.location = window.location.href;
             </script>
             ';
-            */
+            
         
         }
         
-        /*
+        
         if(isset($_POST['delete']))
         {   
             
@@ -168,7 +169,7 @@ class BOToDoManager
             
         }
 
-        */
+        
     }
 
 

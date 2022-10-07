@@ -25,6 +25,7 @@ class UIRenderToDoManager
 
         foreach($collection as $listItem)
         {   
+            /*
             $id = $listItem['taskID'];
             $CSSmodifier = '';
             $hide = '';
@@ -63,7 +64,36 @@ class UIRenderToDoManager
             echo '<form action="toDo.php" method="post"><button '.$hide.' class="btn btn-primary" name="done" value="'.$id.'"  >Done</button>';
             echo '</form>';
             echo '</div>';
+            */
+        
+            //--------------------------------------------------------------------------------------------
+            //lets try this again
+
+            $id = $listItem['taskID'];
+
+            $buttons = '
+            <form action="toDo.php" method="post">
+            
+            <button class="btn btn-primary" name="update" value="'.$id.'">Update</button>
+            <button class="btn btn-primary" name="delete" value="'.$id.'">delete</button>
+            <button class="btn btn-primary" name="done" value="'.$id.'" >done</button>
+            </form>
+            
+            
+            ';
+            echo '
+            <div style="border-style:solid;">
+            <h1>'.$listItem['taskTitle'].'</h1><br>
+            <p>'.$listItem['taskDescription'].'</p>
+            </div>
+            
+            
+            ';
+            
+        
+        
         }
+
 
         echo '
         </div>
@@ -74,17 +104,17 @@ class UIRenderToDoManager
     {
         echo '
         
-        <div class="controlPanel">
-    <div>
-        <form action="toDo.php" method="post">
-            <label for="itemName">Titel</label><br>
-            <input required type="text" id="itemName" name="titel"><br>
-            <label for="itemDesc">Beschreibung</label><br>
-            <input required type="text" id="itemDesc" name="description">
-            <button type="submit" class="btn btn-primary name="save">Save</button>
-        </form>
-    </div>
-</div> 
+                <div class="controlPanel">
+            <div>
+                <form action="" method="post">
+                    <label for="itemName">Titel</label><br>
+                    <input required type="text" id="itemName" name="titel"><br>
+                    <label for="itemDesc">Beschreibung</label><br>
+                    <input required type="text" id="itemDesc" name="description">
+                    <button type="submit" class="btn btn-primary name="SaveItem">Save</button>
+                </form>
+            </div>
+        </div> 
         
         
         
