@@ -41,17 +41,18 @@ class BOToDoManager
     }
 
     //save entry made by user
-    function save($title, $description)
+    function save($title, $description,$date)
     {   
         require('inc/DB.php');
 
         $sql = "INSERT INTO tasks (taskTitle, taskDescription, userID,dateCreated,deadline,done) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
 
-        $placeholderDeadline = time();
+        $dateCreated = time();
+        $deadline = strtotime($date);
         $goal = 0;
         
-        $stmt->bind_param("ssiiii", $title, $description, $this->userID,$placeholderDeadline,$placeholderDeadline,$goal);
+        $stmt->bind_param("ssiiii", $title, $description, $this->userID,$dateCreated,$deadline,$goal);
         $stmt->execute();
 
         
@@ -116,7 +117,7 @@ class BOToDoManager
         if(isset($_POST['titel']) && isset($_POST['description']))
         {
             
-            $this->save($_POST['titel'],$_POST['description']);
+            $this->save($_POST['titel'],$_POST['description'],$_POST['date']);
             unset($_POST);
             
             
@@ -146,7 +147,7 @@ class BOToDoManager
         if(isset($_POST['update']))
         {   
             
-            $this->update($_POST['titel'],$_POST['description'],$_POST['update']);
+            $this->update($_POST['updateTitel'],$_POST['updateDescription'],$_POST['update']);
             unset($_POST);
             echo '
             <script>

@@ -1,13 +1,13 @@
-function editor() {
+function editor(id) {
 
     var taskEditor = '<form action="" method="post">';
     taskEditor += '<label for="itemName">edit Title</label><br>';
-    taskEditor += '<input required type="text" id="itemName" name="titel"><br>';
+    taskEditor += '<input required type="text" id="itemName" name="updateTitel"><br>';
     taskEditor += '<label for="itemDesc">edit Beschreibung</label><br>';
-    taskEditor += '<input required type="text" id="itemDesc" name="description">';
-    taskEditor += '<button type="submit" class="btn btn-primary name="SaveItem">Save</button>';
+    taskEditor += '<input required type="text" id="itemDesc" name="updateDescription">';
+    taskEditor += '<button type="submit" class="btn btn-primary" value="'+id+'" name="update">Update</button>';
     taskEditor += '</form>';
     
 
-    document.getElementById("'.$listItem['taskID'].'").innerHTML = "it worked";
+    document.getElementById(id).innerHTML = taskEditor;
   }
