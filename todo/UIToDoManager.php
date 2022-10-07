@@ -69,21 +69,43 @@ class UIRenderToDoManager
             //--------------------------------------------------------------------------------------------
             //lets try this again
 
+            //load in javascript
+            $editor = '
+            <form action="" method="post">
+            <label for="itemName">edit Title</label><br>
+            <input required type="text" id="itemName" name="titel"><br>
+            <label for="itemDesc">edit Beschreibung</label><br>
+            <input required type="text" id="itemDesc" name="description">
+            <button type="submit" class="btn btn-primary name="SaveItem">Save</button>
+            </form>
+            ';
+
             $id = $listItem['taskID'];
 
             $buttons = '
-            <form action="toDo.php" method="post">
             
-            <button class="btn btn-primary" name="update" value="'.$id.'">Update</button>
+            <button onclick="editor()" class="btn btn-primary" name="update" value="'.$id.'">Update</button>
+            
+            <form action="toDo.php" method="post">
             <button class="btn btn-primary" name="delete" value="'.$id.'">delete</button>
             <button class="btn btn-primary" name="done" value="'.$id.'" >done</button>
             </form>
-            
+            ';
+
+            //javascript function
+            echo '
+            <script>
+            function editor() {
+            document.getElementById("'.$listItem['taskID'].'").innerHTML = "it worked";
+            }
+            </script>
             
             ';
+
+            //render buttons and the entry
             echo '
-            <div style="border-style:solid;">
-            <h1>'.$listItem['taskTitle'].'</h1><br>
+            <div id="'.$listItem['taskID'].'" style="border-style:solid;">
+            <h1>'.$listItem['taskTitle'].'</h1>'.$buttons.'<br>
             <p>'.$listItem['taskDescription'].'</p>
             </div>
             
