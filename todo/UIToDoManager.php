@@ -1,88 +1,66 @@
 <?php
 
-//Author    : Gideon Watson
-//Date      : 10/03/2022
-
-//Here the UI components of the To Do lIst manager will be located, all the controller components will be in the the ToDoManager php file
-//I dont really know what to name these files after but I want to make sure I follow the MVC Pattern fully
-
-//I will create a render class that only displays the to do list and its conten from a certain user that is specified 
-
-class UIRenderToDoManager
-{
+/**
+ * @author Gideon Watson
+ * @description Here the UI components of the To Do lIst manager will be located, all the controller components will be in the the ToDoManager php file
+ */
+class UIRenderToDoManager {
     //Properties
     public $listCollection;
-    
 
-    
-
-    //Methods
-    function renderList($collection)
-    {
+    /**
+     * @param $collection
+     */
+    function renderList($collection) {
         echo '
         <div class="listContainer">
         ';
 
-        foreach($collection as $listItem)
-        {   
-            
-
+        foreach ($collection as $listItem) {
             $id = $listItem['taskID'];
 
             $CSSmodifier = '';
             $hide = '';
 
-            if($listItem['done'] == 1)
-            {
+            if ($listItem['done'] == 1) {
                 $CSSmodifier = 'style="text-decoration: line-through;!important;"';
                 $hide = 'style="display:none; !important;"';
             }
 
-            $buttons = '
-            
-            <script src="inc/button.js"></script>
-            
-            <button onclick="editor('.$id.')" class="btn btn-primary" name="update" value="'.$id.'">Update</button>
+            $buttons = '            
+            <button onclick="editor(' . $id . ')" class="btn btn-primary" name="update" value="' . $id . '">Update</button>
             
             <form action="toDo.php" method="post">
-            <button class="btn btn-primary" name="delete" value="'.$id.'">delete</button>
-            <button class="btn btn-primary" name="done" value="'.$id.'" >done</button>
+            <button class="btn btn-primary" name="delete" value="' . $id . '">delete</button>
+            <button class="btn btn-primary" name="done" value="' . $id . '" >done</button>
             </form>
             ';
 
-            //get time and convert it 
-
+            //get time and convert it
             $SQLTimestamp = $listItem['deadline'];
-            $seconds = round($SQLTimestamp/1000, 0);
-            $PHPDateObject = new DateTime();  
+            $seconds = round($SQLTimestamp / 1000, 0);
+            $PHPDateObject = new DateTime();
             $PHPDateObject->setTimestamp($seconds);
             $deadline = $PHPDateObject->format('Y-m-d H:i:s');
 
-
             //render buttons and the entry
             echo '
-            <div id="'.$listItem['taskID'].'" style="border-style:solid;">
-            <h1 '.$CSSmodifier.'>'.$listItem['taskTitle'].'</h1><p>Zu erledigen bis : '.$deadline.'</p>'.$buttons.'<br>
-            <p '.$CSSmodifier.'>'.$listItem['taskDescription'].'</p>
+            <div id="' . $listItem['taskID'] . '" style="border-style:solid;">
+            <h1 ' . $CSSmodifier . '>' . $listItem['taskTitle'] . '</h1><p>Zu erledigen bis : ' . $deadline . '</p>' . $buttons . '<br>
+            <p ' . $CSSmodifier . '>' . $listItem['taskDescription'] . '</p>
             </div>
             
             
             ';
-            
-        
-        
         }
-
 
         echo '
         </div>
         ';
     }
 
-    function renderControls()
-    {
+    function renderControls() {
         echo '
-        
                 <div class="controlPanel">
             <div>
                 <form action="" method="post">
@@ -100,16 +78,9 @@ class UIRenderToDoManager
                 </form>
             </div>
         </div> 
-        
-        
-        
-        
+
         ';
     }
-
-    
-
-
 }
-?>
+
 

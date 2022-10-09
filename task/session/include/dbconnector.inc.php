@@ -1,10 +1,10 @@
 <?php
 
 // TODO - mit eigener Datenbak verbinden
-$host = 'localhost';
-$database = 'test';
-$username = 'testuser';
-$password = '12345';
+$host = 'db';
+$database = 'db';
+$username = 'db';
+$password = 'db';
 
 // mit Datenbank verbinden
 $mysqli = new mysqli($host, $username, $password, $database);

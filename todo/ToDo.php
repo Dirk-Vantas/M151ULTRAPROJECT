@@ -5,9 +5,6 @@
 //load in all requirements
 require('BOToDoManager.php');
 require('UIToDoManager.php');
-require('inc/bootstrap.php');
-require('inc/DB.php');
-
 
 $testCollection = array('item1','item2');
 
@@ -28,8 +25,3 @@ $controlls->renderControls();
 
 //render all tasks from the user last
 $controlls->renderList($user->itemCollection);
-
-
-
-?>
-
