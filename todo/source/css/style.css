@@ -1,0 +1,63 @@
+nav {
+    background-color: #5e5e5e;
+    border-radius: 0 !important;
+    text-align: center;
+    }
+
+nav ul {
+    display: inline-flex;
+    padding-top: 6px;
+    max-width: 1200px;
+    }
+
+nav li {
+    list-style: none;
+    padding: 5px 10px;
+    }
+
+nav li a {
+    color: white;
+    }
+
+.controlPanel form input {
+    width: 33%;
+    border: 1px solid #5b5b5b;
+    border-radius: 0;
+    padding: 6px 12px;
+    height: 34px;
+    }
+.controlPanel form button{
+    width: 100%;
+    margin-top: 5px;
+    border-radius: 0;
+    }
+.tasks {
+    display: grid;
+    grid-template-columns: 80% 20%;
+    padding: 5px;
+    border-bottom: 1px solid #5b5b5b;
+    }
+
+.tasks button {
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+    border-radius: 0;
+    border: 0;
+    }
+
+.tasks button.update {
+    background: orange;
+    }
+
+.tasks button.finish {
+    background: green;
+    }
+
+.tasks button.delete {
+    background: red;
+    }
+
+.listContainer {
+    margin-top: 30px;
+    }

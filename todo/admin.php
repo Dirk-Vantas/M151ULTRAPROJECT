@@ -1,6 +1,4 @@
 <?php
-
-
 // TODO - Session starten
 session_start();
 session_regenerate_id(true);

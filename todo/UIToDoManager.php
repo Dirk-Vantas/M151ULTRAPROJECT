@@ -28,11 +28,11 @@ class UIRenderToDoManager {
             }
 
             $buttons = '            
-            <button onclick="editor(' . $id . ')" class="btn btn-primary" name="update" value="' . $id . '">Update</button>
+            <button onclick="editor(' . $id . ')" class="btn btn-primary update" name="update" value="' . $id . '">Update</button>
             
             <form action="toDo.php" method="post">
-            <button class="btn btn-primary" name="delete" value="' . $id . '">delete</button>
-            <button class="btn btn-primary" name="done" value="' . $id . '" >done</button>
+            <button class="btn btn-primary finish" name="done" value="' . $id . '" >Erledigt</button>
+                        <button class="btn btn-primary delete" name="delete" value="' . $id . '">Löschen</button>
             </form>
             ';
 
@@ -45,9 +45,11 @@ class UIRenderToDoManager {
 
             //render buttons and the entry
             echo '
-            <div id="' . $listItem['taskID'] . '" style="border-style:solid;">
-            <h1 ' . $CSSmodifier . '>' . $listItem['taskTitle'] . '</h1><p>Zu erledigen bis : ' . $deadline . '</p>' . $buttons . '<br>
-            <p ' . $CSSmodifier . '>' . $listItem['taskDescription'] . '</p>
+            <div id="' . $listItem['taskID'] . '" class="tasks"><div class="infos">
+            <h1 ' . $CSSmodifier . '>' . $listItem['taskTitle'] . '</h1>
+             <p ' . $CSSmodifier . '>' . $listItem['taskDescription'] . '</p>
+            <p>Zu erledigen bis : ' . $deadline . '</p></div><div class="buttons">' . $buttons . '</div>
+          
             </div>
             
             
@@ -64,17 +66,12 @@ class UIRenderToDoManager {
                 <div class="controlPanel">
             <div>
                 <form action="" method="post">
-                    
-                    <label for="itemName">Titel</label><br>
-                    <input required type="text" id="itemName" name="titel"><br>
-                    
-                    <label for="itemDesc">Beschreibung</label><br>
-                    <input required type="text" id="itemDesc" name="description"><br>
-                    
-                    <label for="itemDate">Erledigen bis:</label><br>
-                    <input required type="datetime-local" id="itemDate" name="date">
-                    
-                    <button type="submit" class="btn btn-primary name="SaveItem">Save</button>
+                   
+                   <input required type="text" id="itemName" name="titel" placeholder="Titel">
+                   <input required type="text" id="itemDesc" name="description" placeholder="Beschreibung">
+                    <input required type="datetime-local" id="itemDate" name="date" placeholder="Erledigen bis">
+                   
+                    <button type="submit" class="btn btn-primary name="SaveItem">Speichern</button>
                 </form>
             </div>
         </div> 
