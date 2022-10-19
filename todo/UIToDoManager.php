@@ -30,7 +30,7 @@ class UIRenderToDoManager {
             $buttons = '            
             <button onclick="editor(' . $id . ')" class="btn btn-primary update" name="update" value="' . $id . '">Update</button>
             
-            <form action="toDo.php" method="post">
+            <form action="" method="post">
             <button class="btn btn-primary finish" name="done" value="' . $id . '" >Erledigt</button>
                         <button class="btn btn-primary delete" name="delete" value="' . $id . '">Löschen</button>
             </form>

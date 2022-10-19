@@ -14,7 +14,7 @@ class BOToDoManager {
     //pupulate the collection with all saved items from the DB
     function populate() {
         //get DB
-        require('inc/DB.php');
+        require('inc/db.php');
 
         //get all saved items from the DB for that user
         $result = $conn->query('SELECT * FROM tasks WHERE userID=' . $this->userID);
@@ -33,7 +33,7 @@ class BOToDoManager {
 
     //save entry made by user
     function save($title, $description, $date) {
-        require('inc/DB.php');
+        require('inc/db.php');
 
         $sql = "INSERT INTO tasks (taskTitle, taskDescription, userID,dateCreated,deadline,done) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
@@ -51,7 +51,7 @@ class BOToDoManager {
 
     //delete entry made by user
     function delete($ID) {
-        require('inc/DB.php');
+        require('inc/db.php');
 
         $sql = "DELETE FROM tasks WHERE taskID=? && userID=?";
         $stmt = $conn->prepare($sql);
@@ -66,7 +66,7 @@ class BOToDoManager {
 
     //update entry made by user
     function update($title, $description, $ID) {
-        require('inc/DB.php');
+        require('inc/db.php');
 
         $sql = "UPDATE tasks SET taskTitle=?, taskDescription=? WHERE taskID=? && userID=? ";
         $stmt = $conn->prepare($sql);
@@ -79,7 +79,7 @@ class BOToDoManager {
     }
 
     function done($ID) {
-        require('inc/DB.php');
+        require('inc/db.php');
 
         $done = 1;
 
