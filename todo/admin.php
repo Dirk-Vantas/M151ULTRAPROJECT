@@ -1,16 +1,12 @@
 <?php
-// TODO - Session starten
 session_start();
 session_regenerate_id(true);
 
-// variablen initialisieren
 $error = $message = '';
 
-// TODO -  Wenn personalisierte Session: Begrüssen des Benutzers mit Benutzernamen
 if (!empty($_SESSION)) {
     $message .= "Herzlich Willkommen " . $_SESSION['username'];
 } else {
-// TODO - wenn keine Personalisierte Session
     $error .= "Sie sind nicht angemeldet, melden Sie sich bitte auf der  <a href='login.php'>Login-Seite</a> an.";
 }
 ?>
@@ -55,8 +51,6 @@ include('inc/header.php')
 
     }
     ?>
-
-
 </div>
 
 <?php include('inc/footer.php') ?>
