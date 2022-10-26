@@ -46,7 +46,7 @@ class UIRenderToDoManager {
             //render buttons and the entry
             echo '
             <div id="' . $listItem['taskID'] . '" class="tasks"><div class="infos">
-            <h1' . $CSSmodifier . '>' . $listItem['taskTitle'] . '</h1>
+            <h1 ' . $CSSmodifier . '>' . $listItem['taskTitle'] . '</h1>
              <p ' . $CSSmodifier . '>' . $listItem['taskDescription'] . '</p>
             <p>Zu erledigen bis : ' . $deadline . '</p></div><div class="buttons">' . $buttons . '</div>
           

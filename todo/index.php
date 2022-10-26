@@ -67,6 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 // TODO - Session personifizieren
                 $_SESSION['username'] = $username;
+                //$_SESSION['userID'] = $row['id'];
                 // TODO - Session ID regenerieren
                 session_regenerate_id(true);
                 // TODO - weiterleiten auf admin.php
