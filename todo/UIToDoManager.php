@@ -38,10 +38,10 @@ class UIRenderToDoManager {
 
             //get time and convert it
             $SQLTimestamp = $listItem['deadline'];
-            $seconds = round($SQLTimestamp / 1000, 0);
-            $PHPDateObject = new DateTime();
-            $PHPDateObject->setTimestamp($seconds);
-            $deadline = $PHPDateObject->format('Y-m-d H:i:s');
+                //$seconds = round($SQLTimestamp / 1000, 0);
+                //$PHPDateObject = new DateTime();
+                //$PHPDateObject->setTimestamp($seconds);
+            $deadline = date('Y-m-d H:i:s',$SQLTimestamp);
 
             //render buttons and the entry
             echo '
