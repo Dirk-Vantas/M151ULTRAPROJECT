@@ -75,18 +75,18 @@ include('inc/header.php');
             echo "<div class=\"alert alert-success\" role=\"alert\">" . $message . "</div>";
         }
         ?>
-        <form action="" method="post">
+        <form action="changePsw.php" method="post">
             <!-- Password1 -->
             <div class="form-group">
-                <label for="password1">Neues Passwort *</label>
+                <label>Neues Passwort *</label>
                 <input type="text" name="password1" class="form-control" id="password1"
-                       placeholder="Geben sie ein neues Passwort ein" maxlength="30" required="true">
+                       placeholder="Geben sie ein neues Passwort ein" maxlength="30" required>
             </div>
             <!-- nachname -->
             <div class="form-group">
-                <label for="lastname">Passwort wiederholen *</label>
+                <label>Passwort wiederholen *</label>
                 <input type="text" name="Password2" class="form-control" id="password2"
-                       placeholder="Geben sie es erneut ein" maxlength="30" required="true">
+                       placeholder="Geben sie es erneut ein" maxlength="30" required>
             </div>
             <!-- Send / Reset -->
             <button type="submit" name="button" value="submit" class="btn btn-info">Senden</button>

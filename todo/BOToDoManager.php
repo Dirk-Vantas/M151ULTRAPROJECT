@@ -93,12 +93,56 @@ class BOToDoManager {
         unset($_POST);
     }
 
+    function validate($title, $description, $date) {
+        $error = "";
+        if (isset($title)) {
+            $title = htmlspecialchars(trim($title));
+
+            if (empty($title) || strlen($title) > 30) {
+                $error .= "Geben Sie bitte einen korrekten Titel ein.<br />";
+            }
+        } else {
+            $error .= "Geben Sie bitte einen Titel ein.<br />";
+        }
+
+        if (isset($description)) {
+            $description = htmlspecialchars(trim($description));
+
+            if (empty($description) || strlen($description) > 30) {
+                $error .= "Geben Sie bitte einen korrekten Beschreibung ein.<br />";
+            }
+        } else {
+            $error .= "Geben Sie bitte einen Beschreibung ein.<br />";
+        }
+
+        if (isset($date)) {
+            $date = htmlspecialchars(trim($date));
+        } else {
+            $error .= "Geben Sie bitte ein Datum ein.<br />";
+        }
+
+        if (strlen($error) > 0) {
+            return $error;
+        } else {
+
+            return array(
+                "titel" => $title,
+                "description" => $description,
+                "date" => $date
+            );
+        }
+
+    }
     //function that looks for user input into the form
     //if it finds an input it will save it
     function catchInput() {
-
         if (isset($_POST['titel']) && isset($_POST['description'])) {
-            $this->save($_POST['titel'], $_POST['description'], $_POST['date']);
+            $validate = $this->validate($_POST['titel'], $_POST['description'], $_POST['date']);
+            if (!is_array($validate)) {
+                echo '<h3 class="alert-danger">'.$validate.'</h3>';
+                return;
+            }
+            $this->save($validate['titel'], $validate['description'], $validate['date']);
             unset($_POST);
 
             echo '
@@ -119,7 +163,14 @@ class BOToDoManager {
         }
 
         if (isset($_POST['update'])) {
-            $this->update($_POST['updateTitel'], $_POST['updateDescription'], $_POST['update']);
+            $validate = $this->validate($_POST['updateTitel'], $_POST['updateDescription'], $_POST['updateDate']);
+
+            if (!is_array($validate)) {
+                echo '<h3 class="alert-danger">'.$validate.'</h3>';
+                return;
+            }
+
+            $this->update($validate['titel'], $validate['description'], $validate['date']);
             unset($_POST);
             echo '
             <script>

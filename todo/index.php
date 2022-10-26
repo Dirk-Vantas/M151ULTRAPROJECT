@@ -105,12 +105,12 @@ include('inc/header.php');
         echo "<div class=\"alert alert-danger\" role=\"alert\">" . $error . "</div>";
     }
     ?>
-    <form action="" method="POST">
+    <form action="index.php" method="post">
         <div class="form-group">
             <label for="username">Benutzername *</label>
             <input type="text" name="username" class="form-control" id="username" value=""
                    placeholder="Gross- und Kleinbuchstaben, min 6 Zeichen." pattern="(?=.*[a-z])(?=.*[A-Z])[a-zA-Z]{6,}"
-                   title="Gross- und Kleinbuchstaben, min 6 Zeichen." maxlength="30" required="true">
+                   title="Gross- und Kleinbuchstaben, min 6 Zeichen." maxlength="30" required>
         </div>
         <!-- password -->
         <div class="form-group">
@@ -119,7 +119,7 @@ include('inc/header.php');
                    placeholder="Gross- und Kleinbuchstaben, Zahlen, Sonderzeichen, min. 8 Zeichen, keine Umlaute"
                    pattern="(?=^.{8,}$)((?=.*\d+)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
                    title="mindestens einen Gross-, einen Kleinbuchstaben, eine Zahl und ein Sonderzeichen, mindestens 8 Zeichen lang,keine Umlaute."
-                   maxlength="255" required="true">
+                   maxlength="255" required>
         </div>
         <button type="submit" name="button" value="submit" class="btn btn-info">Senden</button>
         <button type="reset" name="button" value="reset" class="btn btn-warning">Löschen</button>
