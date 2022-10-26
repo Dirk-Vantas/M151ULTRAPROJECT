@@ -24,7 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 
     if (empty($error)) {
-        $password = $_POST['password2'];
+        //validate input
+        $password = htmlspecialchars(trim($_POST['password2']));
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
         // Query erstellen

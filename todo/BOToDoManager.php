@@ -35,6 +35,7 @@ class BOToDoManager {
     function save($title, $description, $date) {
         require('inc/db.php');
 
+
         $sql = "INSERT INTO tasks (taskTitle, taskDescription, userID,dateCreated,deadline,done) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
 
@@ -68,6 +69,18 @@ class BOToDoManager {
     function update($title, $description, $ID) {
         require('inc/db.php');
 
+        //only allow update if person is athorized
+        $result = $conn->query('SELECT * FROM tasks WHERE userID=' . $this->userID);
+        $sql_user = "SELECT * FROM tasks WHERE userID=' . $this->userID";
+
+        //if entries are found add them to the object
+        if (!empty($result)) {
+            //adding collection into property
+            $this->itemCollection = $result;
+        }
+
+        
+        
         $sql = "UPDATE tasks SET taskTitle=?, taskDescription=? WHERE taskID=? && userID=? ";
         $stmt = $conn->prepare($sql);
 
@@ -93,12 +106,24 @@ class BOToDoManager {
         unset($_POST);
     }
 
+    function validate($value)
+    {
+        //trim and sanitize
+        $sanatized = htmlspecialchars(trim($value));
+        if (empty($sanatized) || strlen($sanatized) < 230)
+        {
+            return $sanatized;
+        }
+        
+        
+    }
+
     //function that looks for user input into the form
     //if it finds an input it will save it
     function catchInput() {
 
         if (isset($_POST['titel']) && isset($_POST['description'])) {
-            $this->save($_POST['titel'], $_POST['description'], $_POST['date']);
+            $this->save($this->validate($_POST['titel']), $this->validate($_POST['description']), $_POST['date']);
             unset($_POST);
 
             echo '
@@ -119,7 +144,7 @@ class BOToDoManager {
         }
 
         if (isset($_POST['update'])) {
-            $this->update($_POST['updateTitel'], $_POST['updateDescription'], $_POST['update']);
+            $this->update($this->validate($_POST['updateTitel']), $this->validate($_POST['updateDescription']), $_POST['update']);
             unset($_POST);
             echo '
             <script>
